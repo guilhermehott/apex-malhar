@@ -120,51 +120,95 @@ public abstract class AbstractJdbcPOJOOutputOperator extends AbstractJdbcTransac
         case (Types.VARCHAR):
           statement.setString(i + 1, ((Getter<Object, String>)activeFieldInfo.setterOrGetter).get(tuple));
           break;
-
+  
         case (Types.BOOLEAN):
-          statement.setBoolean(i + 1, ((GetterBoolean<Object>)activeFieldInfo.setterOrGetter).get(tuple));
+          try {
+            statement.setBoolean(i + 1, ((GetterBoolean<Object>)activeFieldInfo.setterOrGetter).get(tuple));
+          } catch (Exception e) {
+            statement.setNull(i + 1, Types.BOOLEAN);
+          }
           break;
-
+  
         case (Types.TINYINT):
-          statement.setByte(i + 1, ((PojoUtils.GetterByte<Object>)activeFieldInfo.setterOrGetter).get(tuple));
+          try {
+            statement.setByte(i + 1, ((PojoUtils.GetterByte<Object>)activeFieldInfo.setterOrGetter).get(tuple));
+          } catch (Exception e) {
+            statement.setNull(i + 1, Types.TINYINT);
+          }
           break;
-
+  
         case (Types.SMALLINT):
-          statement.setShort(i + 1, ((GetterShort<Object>)activeFieldInfo.setterOrGetter).get(tuple));
+          try {
+            statement.setShort(i + 1, ((GetterShort<Object>)activeFieldInfo.setterOrGetter).get(tuple));
+          } catch (Exception e) {
+            statement.setNull(i + 1, Types.SMALLINT);
+          }
           break;
-
+  
         case (Types.INTEGER):
-          statement.setInt(i + 1, ((GetterInt<Object>)activeFieldInfo.setterOrGetter).get(tuple));
+          try {
+            statement.setInt(i + 1, ((GetterInt<Object>)activeFieldInfo.setterOrGetter).get(tuple));
+          } catch (Exception e) {
+            statement.setNull(i + 1, Types.INTEGER);
+          }
           break;
-
+  
         case (Types.BIGINT):
-          statement.setLong(i + 1, ((GetterLong<Object>)activeFieldInfo.setterOrGetter).get(tuple));
+          try {
+            statement.setLong(i + 1, ((GetterLong<Object>)activeFieldInfo.setterOrGetter).get(tuple));
+          } catch (Exception e) {
+            statement.setNull(i + 1, Types.BIGINT);
+          }
           break;
-
+  
         case (Types.FLOAT):
-          statement.setFloat(i + 1, ((GetterFloat<Object>)activeFieldInfo.setterOrGetter).get(tuple));
+          try {
+            statement.setFloat(i + 1, ((GetterFloat<Object>)activeFieldInfo.setterOrGetter).get(tuple));
+          } catch (Exception e) {
+            statement.setNull(i + 1, Types.FLOAT);
+          }
           break;
-
+  
         case (Types.DOUBLE):
-          statement.setDouble(i + 1, ((GetterDouble<Object>)activeFieldInfo.setterOrGetter).get(tuple));
+          try {
+            statement.setDouble(i + 1, ((GetterDouble<Object>)activeFieldInfo.setterOrGetter).get(tuple));
+          } catch (Exception e) {
+            statement.setNull(i + 1, Types.DOUBLE);
+          }
           break;
-
+  
         case Types.DECIMAL:
-          statement.setBigDecimal(i + 1, ((Getter<Object, BigDecimal>)activeFieldInfo.setterOrGetter).get(tuple));
+          try {
+            statement.setBigDecimal(i + 1, ((Getter<Object, BigDecimal>)activeFieldInfo.setterOrGetter).get(tuple));
+          } catch (Exception e) {
+            statement.setNull(i + 1, Types.DECIMAL);
+          }
           break;
-
+  
         case Types.TIMESTAMP:
-          statement.setTimestamp(i + 1, ((Getter<Object, Timestamp>)activeFieldInfo.setterOrGetter).get(tuple));
+          try {
+            statement.setTimestamp(i + 1, ((Getter<Object, Timestamp>)activeFieldInfo.setterOrGetter).get(tuple));
+          } catch (Exception e) {
+            statement.setNull(i + 1, Types.TIMESTAMP);
+          }
           break;
-
+  
         case Types.TIME:
-          statement.setTime(i + 1, ((Getter<Object, Time>)activeFieldInfo.setterOrGetter).get(tuple));
+          try {
+            statement.setTime(i + 1, ((Getter<Object, Time>)activeFieldInfo.setterOrGetter).get(tuple));
+          } catch (Exception e) {
+            statement.setNull(i + 1, Types.TIME);
+          }
           break;
-
+  
         case Types.DATE:
-          statement.setDate(i + 1, ((Getter<Object, Date>)activeFieldInfo.setterOrGetter).get(tuple));
+          try {
+            statement.setDate(i + 1, ((Getter<Object, Date>)activeFieldInfo.setterOrGetter).get(tuple));
+          } catch (Exception e) {
+            statement.setNull(i + 1, Types.DATE);
+          }
           break;
-
+  
         default:
           handleUnknownDataType(type, tuple, activeFieldInfo);
           break;
