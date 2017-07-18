@@ -118,94 +118,117 @@ public abstract class AbstractJdbcPOJOOutputOperator extends AbstractJdbcTransac
       switch (type) {
         case (Types.CHAR):
         case (Types.VARCHAR):
+        case (Types.LONGVARCHAR):
           statement.setString(i + 1, ((Getter<Object, String>)activeFieldInfo.setterOrGetter).get(tuple));
           break;
   
         case (Types.BOOLEAN):
           try {
             statement.setBoolean(i + 1, ((GetterBoolean<Object>)activeFieldInfo.setterOrGetter).get(tuple));
-          } catch (Exception e) {
+          } catch (NullPointerException e) {
             statement.setNull(i + 1, Types.BOOLEAN);
+          } catch (Exception e) {
+            e.printStackTrace();
           }
           break;
   
         case (Types.TINYINT):
           try {
             statement.setByte(i + 1, ((PojoUtils.GetterByte<Object>)activeFieldInfo.setterOrGetter).get(tuple));
-          } catch (Exception e) {
+          } catch (NullPointerException e) {
             statement.setNull(i + 1, Types.TINYINT);
+          } catch (Exception e) {
+            e.printStackTrace();
           }
           break;
   
         case (Types.SMALLINT):
           try {
             statement.setShort(i + 1, ((GetterShort<Object>)activeFieldInfo.setterOrGetter).get(tuple));
-          } catch (Exception e) {
+          } catch (NullPointerException e) {
             statement.setNull(i + 1, Types.SMALLINT);
+          } catch (Exception e) {
+            e.printStackTrace();
           }
           break;
   
         case (Types.INTEGER):
           try {
             statement.setInt(i + 1, ((GetterInt<Object>)activeFieldInfo.setterOrGetter).get(tuple));
-          } catch (Exception e) {
+          } catch (NullPointerException e) {
             statement.setNull(i + 1, Types.INTEGER);
+          } catch (Exception e) {
+            e.printStackTrace();
           }
           break;
   
         case (Types.BIGINT):
           try {
             statement.setLong(i + 1, ((GetterLong<Object>)activeFieldInfo.setterOrGetter).get(tuple));
-          } catch (Exception e) {
+          } catch (NullPointerException e) {
             statement.setNull(i + 1, Types.BIGINT);
+          } catch (Exception e) {
+            e.printStackTrace();
           }
           break;
   
         case (Types.FLOAT):
           try {
             statement.setFloat(i + 1, ((GetterFloat<Object>)activeFieldInfo.setterOrGetter).get(tuple));
-          } catch (Exception e) {
+          } catch (NullPointerException e) {
             statement.setNull(i + 1, Types.FLOAT);
+          } catch (Exception e) {
+            e.printStackTrace();
           }
           break;
   
         case (Types.DOUBLE):
           try {
             statement.setDouble(i + 1, ((GetterDouble<Object>)activeFieldInfo.setterOrGetter).get(tuple));
-          } catch (Exception e) {
+          } catch (NullPointerException e) {
             statement.setNull(i + 1, Types.DOUBLE);
+          } catch (Exception e) {
+            e.printStackTrace();
           }
           break;
   
         case Types.DECIMAL:
           try {
             statement.setBigDecimal(i + 1, ((Getter<Object, BigDecimal>)activeFieldInfo.setterOrGetter).get(tuple));
-          } catch (Exception e) {
+          } catch (NullPointerException e) {
             statement.setNull(i + 1, Types.DECIMAL);
+          } catch (Exception e) {
+            e.printStackTrace();
           }
           break;
   
         case Types.TIMESTAMP:
           try {
             statement.setTimestamp(i + 1, ((Getter<Object, Timestamp>)activeFieldInfo.setterOrGetter).get(tuple));
-          } catch (Exception e) {
+          } catch (NullPointerException e) {
             statement.setNull(i + 1, Types.TIMESTAMP);
+          } catch (Exception e) {
+            e.printStackTrace();
           }
           break;
   
         case Types.TIME:
           try {
             statement.setTime(i + 1, ((Getter<Object, Time>)activeFieldInfo.setterOrGetter).get(tuple));
-          } catch (Exception e) {
+          } catch (NullPointerException e) {
             statement.setNull(i + 1, Types.TIME);
+          } catch (Exception e) {
+            e.printStackTrace();
           }
           break;
   
         case Types.DATE:
           try {
             statement.setDate(i + 1, ((Getter<Object, Date>)activeFieldInfo.setterOrGetter).get(tuple));
-          } catch (Exception e) {
+          } catch (NullPointerException e) {
             statement.setNull(i + 1, Types.DATE);
+          } catch (Exception e) {
+            e.printStackTrace();
           }
           break;
   
@@ -273,6 +296,7 @@ public abstract class AbstractJdbcPOJOOutputOperator extends AbstractJdbcTransac
       switch (type) {
         case (Types.CHAR):
         case (Types.VARCHAR):
+        case (Types.LONGVARCHAR):
           activeFieldInfo.setterOrGetter = PojoUtils.createGetter(pojoClass,
               activeFieldInfo.fieldInfo.getPojoFieldExpression(),
             String.class);

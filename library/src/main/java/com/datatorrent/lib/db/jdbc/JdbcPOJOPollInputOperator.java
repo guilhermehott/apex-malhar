@@ -118,6 +118,7 @@ public class JdbcPOJOPollInputOperator extends AbstractJdbcPollInputOperator<Obj
       switch (type) {
         case (Types.CHAR):
         case (Types.VARCHAR):
+        case (Types.LONGVARCHAR):
           activeFieldInfo.setterOrGetter = PojoUtils.createSetter(pojoClass,
               activeFieldInfo.fieldInfo.getPojoFieldExpression(), String.class);
           break;
@@ -227,6 +228,7 @@ public class JdbcPOJOPollInputOperator extends AbstractJdbcPollInputOperator<Obj
         switch (type) {
           case Types.CHAR:
           case Types.VARCHAR:
+          case Types.LONGVARCHAR:
             String strVal = result.getString(i + 1);
             ((PojoUtils.Setter<Object, String>)afi.setterOrGetter).set(obj, strVal);
             break;
