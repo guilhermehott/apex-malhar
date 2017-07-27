@@ -123,6 +123,7 @@ public class JdbcPOJOPollInputOperator extends AbstractJdbcPollInputOperator<Obj
               activeFieldInfo.fieldInfo.getPojoFieldExpression(), String.class);
           break;
 
+        case (Types.BIT):
         case (Types.BOOLEAN):
           activeFieldInfo.setterOrGetter = PojoUtils.createSetterBoolean(pojoClass,
               activeFieldInfo.fieldInfo.getPojoFieldExpression());
@@ -233,6 +234,7 @@ public class JdbcPOJOPollInputOperator extends AbstractJdbcPollInputOperator<Obj
             ((PojoUtils.Setter<Object, String>)afi.setterOrGetter).set(obj, strVal);
             break;
 
+          case Types.BIT:
           case Types.BOOLEAN:
             boolean boolVal = result.getBoolean(i + 1);
             ((PojoUtils.SetterBoolean<Object>)afi.setterOrGetter).set(obj, boolVal);
